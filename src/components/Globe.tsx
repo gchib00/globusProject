@@ -22,13 +22,19 @@ export const Globe = () => {
     const sphere = new THREE.Mesh(geometry, material);
     scene.add(sphere);
     camera.position.z = 10;
-
+    //rendering functions:
+    const windowResize = () => {
+      //readjust the window size if user changes the window(in order to always keep aspect ratio ideal)
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    }
     const animate = () => {
       requestAnimationFrame(animate);
-      // sphere.rotation.x += 0.004
-      // sphere.rotation.y += 0.004
       renderer.render(scene, camera);
+      controls.update();
     }
+    window.addEventListener('resize', windowResize, false);
     animate();
   }, []);
   return (
