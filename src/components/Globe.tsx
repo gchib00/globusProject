@@ -32,6 +32,11 @@ export const Globe = () => {
       requestAnimationFrame(animate);
       renderer.render(scene, camera);
       controls.update();
+      //rotate clouds:
+      const cloudsLayer = scene.getObjectByName('clouds');
+      if (cloudsLayer) {
+        // cloudsLayer.rotation.y += 0.0005;
+      }
     }
     window.addEventListener('resize', windowResize, false);
     animate();
