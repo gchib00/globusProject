@@ -8,7 +8,7 @@ const createGlobe = (scene: THREE.Scene) => {
   const earthMainLayer = new THREE.TextureLoader().load(earth);
   const earthReliefLayer = new THREE.TextureLoader().load(earthRelief);
   const earthSpecLayer = new THREE.TextureLoader().load(earthSpec);
-  //create a globe:
+  //create a earth:
   const geometry = new THREE.SphereGeometry(5, 32, 32);
   const material = new THREE.MeshPhongMaterial({
     map: earthMainLayer,
@@ -18,6 +18,7 @@ const createGlobe = (scene: THREE.Scene) => {
     specular: new THREE.Color('grey')
   });
   const globe = new THREE.Mesh(geometry, material);
+  globe.name = 'globe';
   scene.add(globe);
   //create a light source: (MeshPhongMaterial needs a light source, otherwise it will be invisible)
   const lightSource = new THREE.DirectionalLight("grey", 0.5);

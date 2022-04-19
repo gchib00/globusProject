@@ -13,7 +13,11 @@ const createClouds = (scene: THREE.Scene) => {
     opacity: 0.2
   });
   const clouds = new THREE.Mesh(geometry, material);
-  scene.add(clouds);
+  clouds.name = 'clouds';
+  const globe = scene.getObjectByName('globe');
+  if (globe) {
+    globe.add(clouds);
+  }
 }
 
 export default createClouds;
