@@ -1,8 +1,9 @@
 import React, { MutableRefObject, useEffect, useRef } from 'react'
 import * as THREE from 'three';
-import generateGlobe from './GlobeObjectGeneration/globe';
-import generateClouds from './GlobeObjectGeneration/clouds';
+import generateGlobe from './SceneObjectsGeneration/globe';
+import generateClouds from './SceneObjectsGeneration/clouds';
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import generateStarsBG from './SceneObjectsGeneration/stars';
 
 export const Globe = () => {
   const canvasRef = useRef() as MutableRefObject<HTMLCanvasElement>;
@@ -19,6 +20,7 @@ export const Globe = () => {
     const controls = new OrbitControls(camera, renderer.domElement);
     camera.position.z = 10;
     //add objects to the scene:
+    generateStarsBG(scene);
     generateGlobe(scene);
     generateClouds(scene);
     //rendering functions:
