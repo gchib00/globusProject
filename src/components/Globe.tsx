@@ -4,6 +4,7 @@ import generateGlobe from './SceneObjectsGeneration/globe';
 import generateClouds from './SceneObjectsGeneration/clouds';
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import generateStars from './SceneObjectsGeneration/stars';
+import generateCities from './SceneObjectsGeneration/cities';
 
 export const Globe = () => {
   const canvasRef = useRef() as MutableRefObject<HTMLCanvasElement>;
@@ -22,13 +23,14 @@ export const Globe = () => {
     camera.position.z = 10;
     controls.enablePan = false;
     controls.maxDistance = 28;
-    controls.minDistance = 8;
+    controls.minDistance = 6.6;
     controls.update();
     controls.saveState();
     //add objects to the scene:
     generateStars(scene);
     generateGlobe(scene);
     generateClouds(scene);
+    generateCities(scene);
     //rendering functions:
     const windowResize = () => {
       //readjust the window size if user changes the window(in order to always keep aspect ratio ideal)
