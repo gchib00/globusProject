@@ -18,7 +18,13 @@ export const Globe = () => {
     });
     renderer.setSize(window.innerWidth, window.innerHeight);
     const controls = new OrbitControls(camera, renderer.domElement);
+    //set camera position and adjust controls to prevent user from zooming in/out too much:
     camera.position.z = 10;
+    controls.enablePan = false;
+    controls.maxDistance = 28;
+    controls.minDistance = 8;
+    controls.update();
+    controls.saveState();
     //add objects to the scene:
     generateStars(scene);
     generateGlobe(scene);
