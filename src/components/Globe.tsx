@@ -3,7 +3,7 @@ import * as THREE from 'three';
 import generateGlobe from './SceneObjectsGeneration/globe';
 import generateClouds from './SceneObjectsGeneration/clouds';
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import generateStarsBG from './SceneObjectsGeneration/stars';
+import generateStars from './SceneObjectsGeneration/stars';
 
 export const Globe = () => {
   const canvasRef = useRef() as MutableRefObject<HTMLCanvasElement>;
@@ -20,7 +20,7 @@ export const Globe = () => {
     const controls = new OrbitControls(camera, renderer.domElement);
     camera.position.z = 10;
     //add objects to the scene:
-    generateStarsBG(scene);
+    generateStars(scene);
     generateGlobe(scene);
     generateClouds(scene);
     //rendering functions:

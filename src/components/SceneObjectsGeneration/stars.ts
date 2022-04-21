@@ -1,9 +1,9 @@
 import * as THREE from 'three';
 
-const generateStarsBG = (scene: THREE.Scene) => {
+const generateStars = (scene: THREE.Scene) => {
   //load texture:
   const material = new THREE.PointsMaterial({
-    color: 0xffffff
+    color: '#7F7F7F'
   })
   //create star objects:
   const geometry = new THREE.BufferGeometry();
@@ -11,13 +11,16 @@ const generateStarsBG = (scene: THREE.Scene) => {
   //get randomized positions for star objects:
   const vertices = [];
   for (let i = 0; i < 2000; i++) {
-    let x = (Math.random() - 0.5) * 500;
-    let y = (Math.random() - 0.5) * 500;
-    let z = (Math.random() - 0.5) * 500;
-    vertices.push(x, y, z);
+    let x = (Math.random() - 0.5) * 600;
+    let y = (Math.random() - 0.5) * 600;
+    let z = (Math.random() - 0.5) * 600;
+    //exclude star objects that are generated too close to the globe:
+    if ( (x <= -200 || x >= 200) || (y <= -200 || y >= 200) || (z <= -200 || z >= 200) ) {
+      vertices.push(x, y, z);
+    }
   }
   geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
   scene.add(stars);
 }
 
-export default generateStarsBG;
+export default generateStars;
