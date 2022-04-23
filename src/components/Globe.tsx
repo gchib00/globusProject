@@ -27,9 +27,9 @@ export const Globe = () => {
     controls.update();
     controls.saveState();
     //add objects to the scene:
-    generateStars(scene);
+    // generateStars(scene);
     generateGlobe(scene);
-    generateClouds(scene);
+    // generateClouds(scene);
     generateCities(scene);
     //rendering functions:
     const windowResize = () => {

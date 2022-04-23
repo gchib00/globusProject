@@ -9,7 +9,7 @@ const createGlobe = (scene: THREE.Scene) => {
   const earthReliefLayer = new THREE.TextureLoader().load(earthRelief);
   const earthSpecLayer = new THREE.TextureLoader().load(earthSpec);
   //create a earth:
-  const geometry = new THREE.SphereGeometry(5, 32, 32);
+  const geometry = new THREE.SphereGeometry(5, 62, 62);
   const material = new THREE.MeshPhongMaterial({
     map: earthMainLayer,
     bumpMap: earthReliefLayer,
