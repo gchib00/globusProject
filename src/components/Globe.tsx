@@ -26,18 +26,53 @@ export const Globe = () => {
     controls.minDistance = 6.6;
     controls.update();
     controls.saveState();
+    //raycastering:
+    const raycaster = new THREE.Raycaster();
+    const mouse = new THREE.Vector2();
+    const touch = new THREE.Vector2();
     //add objects to the scene:
-    // generateStars(scene);
+    generateStars(scene);
     generateGlobe(scene);
-    // generateClouds(scene);
+    generateClouds(scene);
     generateCities(scene);
-    //rendering functions:
+    //raycastering:
+    const onWindowClick = (e: MouseEvent) => {
+      e.preventDefault();
+      mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+      mouse.y = - (e.clientY / window.innerHeight) * 2 + 1;
+      raycaster.setFromCamera(mouse, camera);
+      const globe = scene.getObjectByName('globe');
+      if (globe) {
+        const intersects = raycaster.intersectObjects(globe.children);
+        if (intersects.length === 2) { //first child is clouds object, so we have to select second one
+          console.log(intersects[1]);
+        }
+      }
+    }
+    const onWindowTouch = (e: TouchEvent) => {
+      e.preventDefault();
+      touch.x = (e.touches[0].clientX / window.innerWidth) * 2 - 1;
+      touch.y = - (e.touches[0].clientY / window.innerHeight) * 2 + 1;
+      raycaster.setFromCamera(mouse, camera);
+      const globe = scene.getObjectByName('globe');
+      if (globe) {
+        const intersects = raycaster.intersectObjects(globe.children);
+        if (intersects.length === 2) { //first child is clouds object, so we have to select second one
+          console.log(intersects[1]);
+        }
+      }
+    }
+    //readjust the window size if user changes the window(in order to always keep aspect ratio ideal):
     const windowResize = () => {
-      //readjust the window size if user changes the window(in order to always keep aspect ratio ideal)
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
       renderer.setSize(window.innerWidth, window.innerHeight);
-    }
+    }  
+    //event listeners:
+    window.addEventListener('click', onWindowClick, false);
+    window.addEventListener('touchstart', onWindowTouch, false);
+    window.addEventListener('resize', windowResize, false);
+    //rendering functions:  
     const animate = () => {
       requestAnimationFrame(animate);
       renderer.render(scene, camera);
@@ -48,7 +83,7 @@ export const Globe = () => {
         // cloudsLayer.rotation.y += 0.0005;
       }
     }
-    window.addEventListener('resize', windowResize, false);
+
     animate();
   }, []);
 

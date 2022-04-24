@@ -50,7 +50,12 @@ const generateCities = (scene: THREE.Scene) => {
       Math.sin(latitude) * radius,
       Math.cos(latitude) * Math.sin(longitude) * radius
     );
-    return scene.add(cityObject);
+    cityObject.name = 'city';
+    const globe = scene.getObjectByName('globe');
+    if (globe) {
+      return globe.add(cityObject);
+    }
+    return null;
   })
 }
 
