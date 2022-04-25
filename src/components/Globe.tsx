@@ -15,7 +15,7 @@ export const Globe = () => {
     const camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.1, 1000 );
     const renderer = new THREE.WebGLRenderer({
       canvas: canvasRef.current,
-      antialias: true
+      // antialias: true
     });
     renderer.setSize(window.innerWidth, window.innerHeight);
     const controls = new OrbitControls(camera, renderer.domElement);
@@ -32,7 +32,7 @@ export const Globe = () => {
     const touch = new THREE.Vector2();
     //add objects to the scene:
     generateStars(scene);
-    generateGlobe(scene);
+    generateGlobe(scene, camera, controls);
     generateClouds(scene);
     generateCities(scene);
     //raycastering:
@@ -69,21 +69,22 @@ export const Globe = () => {
       renderer.setSize(window.innerWidth, window.innerHeight);
     }  
     //event listeners:
-    window.addEventListener('click', onWindowClick, false);
-    window.addEventListener('touchstart', onWindowTouch, false);
-    window.addEventListener('resize', windowResize, false);
+    window.addEventListener('click', onWindowClick);
+    window.addEventListener('touchstart', onWindowTouch);
+    window.addEventListener('resize', windowResize);
     //rendering functions:  
     const animate = () => {
       requestAnimationFrame(animate);
+      // renderer.dispose();
       renderer.render(scene, camera);
       controls.update();
+      console.log('test')
       //rotate clouds:
       const cloudsLayer = scene.getObjectByName('clouds');
       if (cloudsLayer) {
-        // cloudsLayer.rotation.y += 0.0005;
+        cloudsLayer.rotation.y += 0.0001;
       }
     }
-
     animate();
   }, []);
 
