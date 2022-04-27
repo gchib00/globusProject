@@ -1,49 +1,25 @@
 import * as THREE from "three";
+import citiesJSON from '../../static/cities.json';
 
-const cities = [
-  {
-    name: 'Reykjavik',
-    latitude: 64.13548,
-    longitude: -21.89541,
-  },
-  {
-    name: 'Paris',
-    latitude: 48.8566,
-    longitude: 2.3522,
-  },
-  {
-    name: 'Stockholm',
-    latitude: 59.3293,
-    longitude: 18.0686,
-  },
-  {
-    name: 'Rome',
-    latitude: 41.9028,
-    longitude: 12.4964,
-  },
-  {
-    name: 'Pozzallo',
-    latitude: 36.7299,
-    longitude: 14.8491,
-  },
-  {
-    name: 'Turin',
-    latitude: 45.0703,
-    longitude: 7.6869,
-  }
-]
+interface City {
+  countryName: string;
+  capitalName: string;
+  latitude: string;
+  longitude: string;
+  countryCode: string;
+  continent: string;
+}
 
 const generateCities = (scene: THREE.Scene) => {
+  const cities: City[] = [...citiesJSON];
   cities.map((city) => {
-    const latitude = city.latitude * (Math.PI/180);
-    const longitude = - city.longitude * (Math.PI/180);
+    const latitude = Number(city.latitude) * (Math.PI/180);
+    const longitude = - Number(city.longitude) * (Math.PI/180);
     const radius = 5; //must be equal to globe's radius
     //create texture:
-    const material = new THREE.MeshBasicMaterial({
-      color: 'red'
-    })
+    const material = new THREE.MeshBasicMaterial({ color: '#750000' })
     //create city object:
-    const geometry = new THREE.SphereGeometry(.010, 10, 10);
+    const geometry = new THREE.SphereGeometry(.010, 15, 15);
     const cityObject = new THREE.Mesh(geometry, material);  
     cityObject.position.set(
       Math.cos(latitude) * Math.cos(longitude) * radius,
@@ -51,7 +27,11 @@ const generateCities = (scene: THREE.Scene) => {
       Math.cos(latitude) * Math.sin(longitude) * radius
     );
     const globe = scene.getObjectByName('globe');
-    cityObject.name = 'city';
+    cityObject.name = city.capitalName;
+    cityObject.userData = {
+      country: city.countryName,
+      continent: city.continent
+    }
     if (globe) {
       return globe.add(cityObject);
     }

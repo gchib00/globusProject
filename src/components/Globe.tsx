@@ -15,7 +15,7 @@ export const Globe = () => {
     const camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.1, 1000 );
     const renderer = new THREE.WebGLRenderer({
       canvas: canvasRef.current,
-      // antialias: true
+      antialias: true
     });
     renderer.setSize(window.innerWidth, window.innerHeight);
     const controls = new OrbitControls(camera, renderer.domElement);
@@ -23,7 +23,7 @@ export const Globe = () => {
     camera.position.z = 10;
     controls.enablePan = false;
     controls.maxDistance = 28;
-    controls.minDistance = 6.6;
+    controls.minDistance = 6.2;
     controls.update();
     controls.saveState();
     //raycastering:
@@ -31,9 +31,9 @@ export const Globe = () => {
     const mouse = new THREE.Vector2();
     const touch = new THREE.Vector2();
     //add objects to the scene:
-    generateStars(scene);
-    generateGlobe(scene, camera, controls);
+    generateGlobe(scene);
     generateClouds(scene);
+    generateStars(scene);
     generateCities(scene);
     //raycastering:
     const onWindowClick = (e: MouseEvent) => {
@@ -45,7 +45,7 @@ export const Globe = () => {
       if (globe) {
         const intersects = raycaster.intersectObjects(globe.children);
         if (intersects.length === 2) { //first child is clouds object, so we have to select second one
-          console.log(intersects[1]);
+          console.log(intersects[1].object.name);
         }
       }
     }
@@ -58,7 +58,7 @@ export const Globe = () => {
       if (globe) {
         const intersects = raycaster.intersectObjects(globe.children);
         if (intersects.length === 2) { //first child is clouds object, so we have to select second one
-          console.log(intersects[1]);
+          console.log(intersects[1].object.name);
         }
       }
     }
@@ -75,10 +75,8 @@ export const Globe = () => {
     //rendering functions:  
     const animate = () => {
       requestAnimationFrame(animate);
-      // renderer.dispose();
       renderer.render(scene, camera);
       controls.update();
-      console.log('test')
       //rotate clouds:
       const cloudsLayer = scene.getObjectByName('clouds');
       if (cloudsLayer) {

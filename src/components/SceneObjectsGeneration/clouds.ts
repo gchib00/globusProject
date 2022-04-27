@@ -10,7 +10,7 @@ const createClouds = (scene: THREE.Scene) => {
     map: cloudsMainLayer,
     color: 0xffffff,
     transparent: true,
-    opacity: 0.2
+    opacity: 0.14
   });
   const clouds = new THREE.Mesh(geometry, material);
   clouds.name = 'clouds';
