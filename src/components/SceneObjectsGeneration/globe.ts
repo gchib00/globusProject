@@ -2,8 +2,11 @@ import * as THREE from 'three';
 import earth from '../../static/earth.jpg';
 
 const createGlobe = (scene: THREE.Scene) => {
+	const loadingManager = new THREE.LoadingManager();
+  loadingManager.onLoad = () => console.log('Done!');
+
   //load textures:
-  const earthMainLayer = new THREE.TextureLoader().load(earth);
+  const earthMainLayer = new THREE.TextureLoader(loadingManager).load(earth);
   //create a earth:
   const geometry = new THREE.SphereGeometry(5, 56, 56);
   const material = new THREE.MeshBasicMaterial({

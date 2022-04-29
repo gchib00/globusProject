@@ -31,6 +31,7 @@ export const Globe = () => {
     const mouse = new THREE.Vector2();
     const touch = new THREE.Vector2();
     //add objects to the scene:
+    console.log('test')
     generateGlobe(scene);
     generateClouds(scene);
     generateStars(scene);
