@@ -6,7 +6,11 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import generateStars from './SceneObjectsGeneration/stars';
 import generateCities from './SceneObjectsGeneration/cities';
 
-export const Globe = () => {
+interface Props {
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export const Globe = ({ setLoading }: Props) => {
   const canvasRef = useRef() as MutableRefObject<HTMLCanvasElement>;
 
   useEffect(() => {
@@ -32,7 +36,7 @@ export const Globe = () => {
     const touch = new THREE.Vector2();
     //add objects to the scene:
     console.log('test')
-    generateGlobe(scene);
+    generateGlobe({ scene, setLoading });
     generateClouds(scene);
     generateStars(scene);
     generateCities(scene);

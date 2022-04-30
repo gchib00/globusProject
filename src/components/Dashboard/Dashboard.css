@@ -1,0 +1,60 @@
+/* variables */
+:root {
+  --mainColor: #d5d0d1ef;
+  --backgroundColor: #d5d0d142;
+}
+/* dashboard */
+.dashboard-mc {
+  position: absolute;
+  height: 46px;
+  width: 100vw;
+  background: var(--backgroundColor);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem 0 1rem;
+}
+.dashboard-trapezoid {
+  box-sizing: border-box;
+  margin: 0;
+  height: 46px;
+  width: 260px;
+  background-color: var(--mainColor);
+  clip-path: polygon(0% 0%, 100% 0%, 85% 100%, 15% 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+/* NavbarMenu */
+.m-btn {
+  display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	width: 30px;
+	height: 21px;
+  margin-right: 2.6rem;
+  cursor: pointer;
+}
+.m-btn-bar {
+  height: 0.3rem;
+	width: 2.2rem;
+	background-color: var(--mainColor);
+	border-radius: 5px;
+  transition: 0.3s;
+}
+.m-list-container {
+  height: 0px;
+  width: 300px;
+  background-color: var(--backgroundColor);
+  border-top: none;
+  border-right: none;
+  position: absolute;
+  right: 0;
+  top: 46px;
+  transition: 500ms;
+  z-index: 5;
+}
+.m-list {
+  transition: 200ms;
+}
