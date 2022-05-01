@@ -8,9 +8,8 @@ import { State } from '../../types';
 interface Props {
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }
-
 export const Scene = ({ setLoading }: Props) => {
-  const targetCity = useSelector((state: State) => state.city);
+  const city = useSelector((state: State) => state.city);
   const dispatch = useDispatch();
 
   const getRandomCity = (): string => {
@@ -19,26 +18,23 @@ export const Scene = ({ setLoading }: Props) => {
     return arr[i].capitalName;
   }
   useEffect(() => {
-    if (targetCity.length === 0) {
+    if (city.targetCity.length === 0) {
       dispatch(setCity(getRandomCity()))
     }
-  }, [targetCity, dispatch]);
-  const processCityClick = (clickedCity: string) => {
-    // console.log('entered processCityClick as ', clickedCity)
-    console.log('targetcity (from other fn)=', targetCity)
-    if (targetCity === clickedCity) {
+  }, [city.targetCity, dispatch]);
+  useEffect(() => {
+    if (city.targetCity.length > 0 && city.targetCity === city.clickedCity) {
       alert('Correct!');
       //set a different random city:
-      const newRandomCity = getRandomCity();
-      if (newRandomCity === targetCity) {
-
+      let newRandomCity = getRandomCity();
+      //make sure the same city is not repeated in sequence:
+      if (newRandomCity === city.targetCity) {
+        newRandomCity = getRandomCity();
       }
       dispatch(setCity(getRandomCity()));
-    } else {
-      return null;
     }
-  }
+  }, [city, dispatch])
   return (
-    <Globe setLoading={setLoading} processCityClick={processCityClick} />
+    <Globe setLoading={setLoading} />
   )
 }

@@ -12,7 +12,7 @@ export const Dashboard = () => {
         <h3 style={{color: 'white'}}>LOGO</h3>
       </div>
       <div className='dashboard-trapezoid'>
-        {city}
+        {city.targetCity}
       </div>
       <NavbarMenu />
     </div>

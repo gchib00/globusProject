@@ -5,15 +5,15 @@ import generateClouds from './SceneObjectsGeneration/clouds';
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import generateStars from './SceneObjectsGeneration/stars';
 import generateCities from './SceneObjectsGeneration/cities';
+import { useDispatch } from 'react-redux';
+import { setClickedCity } from '../../store/actions';
 
 interface Props {
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
-  processCityClick: (clickedCity: string) => null | undefined;
 }
-
-export const Globe = ({ setLoading, processCityClick }: Props) => {
+export const Globe = ({ setLoading }: Props) => {
   const canvasRef = useRef() as MutableRefObject<HTMLCanvasElement>;
-
+  const dispatch = useDispatch();
   useEffect(() => {
     //create scene:
     const scene = new THREE.Scene();
@@ -40,7 +40,7 @@ export const Globe = ({ setLoading, processCityClick }: Props) => {
     generateClouds(scene);
     generateStars(scene);
     generateCities(scene);
-    //raycastering:
+    //click event registering:
     const onWindowClick = (e: MouseEvent) => {
       e.preventDefault();
       mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
@@ -51,7 +51,7 @@ export const Globe = ({ setLoading, processCityClick }: Props) => {
         const intersects = raycaster.intersectObjects(globe.children);
         //first child is clouds object, so we have to select second one in order to register city object clicks:
         if (intersects.length === 2) {
-          processCityClick(intersects[1].object.name);
+          dispatch(setClickedCity(intersects[1].object.name));
         }
       }
     }
@@ -90,7 +90,7 @@ export const Globe = ({ setLoading, processCityClick }: Props) => {
       }
     }
     animate();
-  }, [setLoading, processCityClick]);
+  }, [setLoading, dispatch]);
 
   return (
     <canvas ref={canvasRef} />

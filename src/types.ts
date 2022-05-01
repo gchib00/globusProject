@@ -1,3 +1,6 @@
 export interface State {
-  city: string;
+  city: {
+    targetCity: string;
+    clickedCity: string;
+  };
 }

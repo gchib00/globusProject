@@ -1,4 +1,7 @@
-const initialState = '';
+const initialState = {
+  targetCity: '',
+  clickedCity: ''
+};
 
 interface ActionType {
   type: string;
@@ -7,8 +10,17 @@ interface ActionType {
 
 export const cityReducer = (state = initialState, action: ActionType) => {
   switch (action.type) {
-    case ('CHANGE_CITY'): {
-      return action.payload;
+    case ('SET_CITY'): {
+      return {
+        targetCity: action.payload,
+        clickedCity: state.clickedCity
+      };
+    }
+    case ('SET_CLICKED_CITY'): {
+      return {
+        targetCity: state.targetCity,
+        clickedCity: action.payload
+      }
     }
     default: return state;
   }
