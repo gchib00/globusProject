@@ -8,9 +8,10 @@ import generateCities from './SceneObjectsGeneration/cities';
 
 interface Props {
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  processCityClick: (clickedCity: string) => null | undefined;
 }
 
-export const Globe = ({ setLoading }: Props) => {
+export const Globe = ({ setLoading, processCityClick }: Props) => {
   const canvasRef = useRef() as MutableRefObject<HTMLCanvasElement>;
 
   useEffect(() => {
@@ -35,7 +36,6 @@ export const Globe = ({ setLoading }: Props) => {
     const mouse = new THREE.Vector2();
     const touch = new THREE.Vector2();
     //add objects to the scene:
-    console.log('test')
     generateGlobe({ scene, setLoading });
     generateClouds(scene);
     generateStars(scene);
@@ -49,8 +49,9 @@ export const Globe = ({ setLoading }: Props) => {
       const globe = scene.getObjectByName('globe');
       if (globe) {
         const intersects = raycaster.intersectObjects(globe.children);
-        if (intersects.length === 2) { //first child is clouds object, so we have to select second one
-          console.log(intersects[1].object.name);
+        //first child is clouds object, so we have to select second one in order to register city object clicks:
+        if (intersects.length === 2) {
+          processCityClick(intersects[1].object.name);
         }
       }
     }
@@ -89,7 +90,7 @@ export const Globe = ({ setLoading }: Props) => {
       }
     }
     animate();
-  }, []);
+  }, [setLoading, processCityClick]);
 
   return (
     <canvas ref={canvasRef} />

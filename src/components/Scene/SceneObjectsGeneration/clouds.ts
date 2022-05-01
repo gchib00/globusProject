@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import earthClouds from '../../static/clouds.jpg';
+import earthClouds from '../../../static/clouds.jpg';
 
 const createClouds = (scene: THREE.Scene) => {
   //load texture:

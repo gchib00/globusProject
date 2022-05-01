@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import citiesJSON from '../../static/cities.json';
+import citiesJSON from '../../../static/cities.json';
 
 interface City {
   countryName: string;

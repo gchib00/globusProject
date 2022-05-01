@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import earth from '../../static/earth.jpg';
+import earth from '../../../static/earth.jpg';
 
 interface Props {
   scene: THREE.Scene;
@@ -14,7 +14,6 @@ const createGlobe = ({ scene, setLoading }: Props) => {
       setLoading(false);
     }, 2000);
   }
-
   //load textures:
   const earthMainLayer = new THREE.TextureLoader(loadingManager).load(earth);
   //create a earth:
