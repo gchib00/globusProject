@@ -11,7 +11,6 @@ interface Props {
 export const Scene = ({ setLoading }: Props) => {
   const city = useSelector((state: State) => state.city);
   const dispatch = useDispatch();
-
   const getRandomCity = (): string => {
     const arr = [...citiesJSON];
     const i = Math.floor(Math.random()*arr.length);

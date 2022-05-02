@@ -68,6 +68,25 @@ export const Globe = ({ setLoading }: Props) => {
         }
       }
     }
+    const registerHoverPos = (e: MouseEvent) => {
+      e.preventDefault();
+      mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+      mouse.y = - (e.clientY / window.innerHeight) * 2 + 1;
+      raycaster.setFromCamera(mouse, camera);
+      const globe = scene.getObjectByName('globe');
+      if (globe) {
+        //when user hovers on city object, display pointer cursor:
+        const intersects = raycaster.intersectObjects(globe.children);
+        const canvasEl = document.getElementById('globe') as HTMLCanvasElement;
+        if (intersects.length === 2) {
+          if (canvasEl) {
+            canvasEl.style.cursor = 'pointer';
+          }
+        } else {
+          canvasEl.style.cursor = 'default';
+        }
+      }
+    }
     //readjust the window size if user changes the window(in order to always keep aspect ratio ideal):
     const windowResize = () => {
       camera.aspect = window.innerWidth / window.innerHeight;
@@ -78,6 +97,7 @@ export const Globe = ({ setLoading }: Props) => {
     window.addEventListener('click', onWindowClick);
     window.addEventListener('touchstart', onWindowTouch);
     window.addEventListener('resize', windowResize);
+    window.addEventListener('mousemove', registerHoverPos);
     //rendering functions:  
     const animate = () => {
       requestAnimationFrame(animate);
@@ -93,6 +113,6 @@ export const Globe = ({ setLoading }: Props) => {
   }, [setLoading, dispatch]);
 
   return (
-    <canvas ref={canvasRef} />
+    <canvas ref={canvasRef} id='globe' />
   )
 }
