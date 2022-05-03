@@ -4,6 +4,7 @@ import { setCity } from '../../store/actions';
 import citiesJSON from '../../static/cities.json';
 import { useSelector, useDispatch } from 'react-redux';
 import { State } from '../../types';
+import { FeedbackPopup } from '../HelperComponents/FeedbackPopup';
 
 interface Props {
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
@@ -34,6 +35,9 @@ export const Scene = ({ setLoading }: Props) => {
     }
   }, [city, dispatch])
   return (
+    <>
     <Globe setLoading={setLoading} />
+    <FeedbackPopup />    
+    </>
   )
 }
