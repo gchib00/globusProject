@@ -1,6 +1,7 @@
 const initialState = {
   targetCity: '',
-  clickedCity: ''
+  clickedCity: '',
+  clickedCityPos: undefined
 };
 
 interface ActionType {
@@ -8,7 +9,7 @@ interface ActionType {
   payload: string;
 }
 
-export const cityReducer = (state = initialState, action: ActionType) => {
+export const cityReducer = (state = initialState, action: any) => {
   switch (action.type) {
     case ('SET_CITY'): {
       return {
@@ -19,7 +20,11 @@ export const cityReducer = (state = initialState, action: ActionType) => {
     case ('SET_CLICKED_CITY'): {
       return {
         targetCity: state.targetCity,
-        clickedCity: action.payload
+        clickedCity: action.payload.city,
+        clickedCityPos: {
+          x: action.payload.pos.x,
+          y: action.payload.pos.y,
+        }
       }
     }
     default: return state;

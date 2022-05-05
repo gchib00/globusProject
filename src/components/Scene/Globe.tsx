@@ -6,7 +6,7 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import generateStars from './SceneObjectsGeneration/stars';
 import generateCities from './SceneObjectsGeneration/cities';
 import { useDispatch } from 'react-redux';
-import { setClickedCity, setClickedCityPos } from '../../store/actions';
+import { setClickedCity } from '../../store/actions';
 
 interface Props {
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
@@ -55,8 +55,7 @@ export const Globe = ({ setLoading }: Props) => {
         const intersects = raycaster.intersectObjects(globe.children);
         //first child is clouds object, so we have to select second one in order to register city object clicks:
         if (intersects.length === 2) {
-          dispatch(setClickedCity(intersects[1].object.name));
-          dispatch(setClickedCityPos(clickCoordinates));
+          dispatch(setClickedCity(intersects[1].object.name, clickCoordinates));
         }
       }
     }

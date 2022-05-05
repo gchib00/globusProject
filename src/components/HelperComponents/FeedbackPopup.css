@@ -1,0 +1,10 @@
+.feedback-popup {
+  position: 'absolute';
+  color: 'white';
+  border-radius: 6px;
+  min-width: 140;
+  height: 30;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

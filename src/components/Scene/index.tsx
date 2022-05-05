@@ -1,16 +1,17 @@
 import React, { useEffect } from 'react'
 import { Globe } from './Globe';
-import { setCity } from '../../store/actions';
+import { setAnswer, setCity } from '../../store/actions';
 import citiesJSON from '../../static/cities.json';
 import { useSelector, useDispatch } from 'react-redux';
-import { State } from '../../types';
 import { FeedbackPopup } from '../HelperComponents/FeedbackPopup';
+import { State } from '../../types';
 
 interface Props {
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }
 export const Scene = ({ setLoading }: Props) => {
   const city = useSelector((state: State) => state.city);
+  const answerResult = useSelector((state: State) => state.answerResult);
   const dispatch = useDispatch();
   const getRandomCity = (): string => {
     const arr = [...citiesJSON];
@@ -23,8 +24,8 @@ export const Scene = ({ setLoading }: Props) => {
     }
   }, [city.targetCity, dispatch]);
   useEffect(() => {
-    if (city.targetCity.length > 0 && city.targetCity === city.clickedCity) {
-      alert('Correct!');
+    if (city.targetCity.length > 0 && city.targetCity === city.clickedCity && !answerResult) {
+      dispatch(setAnswer(true))
       //set a different random city:
       let newRandomCity = getRandomCity();
       //make sure the same city is not repeated in sequence:
@@ -33,7 +34,7 @@ export const Scene = ({ setLoading }: Props) => {
       }
       dispatch(setCity(getRandomCity()));
     }
-  }, [city, dispatch])
+  }, [city, dispatch, answerResult])
   return (
     <>
     <Globe setLoading={setLoading} />

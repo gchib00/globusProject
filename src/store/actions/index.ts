@@ -1,14 +1,14 @@
-import { ClickCoordinates } from "../../types";
+import { MouseCoordinates } from "../../types";
 
 export const setCity = (city: string) => ({
   type: 'SET_CITY',
   payload: city,
 });
-export const setClickedCity = (city: string) => ({
+export const setClickedCity = (city: string, pos: MouseCoordinates) => ({
   type: 'SET_CLICKED_CITY',
-  payload: city
-})
-export const setClickedCityPos = (mouse: ClickCoordinates) => ({
-  type: 'SET_CLICKED_CITY_POS',
-  payload: mouse
-})
+  payload: { city, pos }
+});
+export const setAnswer = (answer: boolean) => ({
+  type: 'SET_ANSWER',
+  payload: answer
+});

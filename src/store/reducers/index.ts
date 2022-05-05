@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
+import { answerReducer } from './answerReducer';
 import { cityReducer } from './cityReducer';
-import { clickedCityReducer } from './clickedCityReducer';
 
 export const allReducers = combineReducers({
   city: cityReducer,
-  clickedCityPos: clickedCityReducer
+  answerResult: answerReducer
 });

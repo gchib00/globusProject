@@ -1,11 +1,15 @@
 export interface State {
   city: {
     targetCity: string;
-    clickedCity: string;
+    clickedCity?: string;
+    clickedCityPos?: {
+      x: number,
+      y: number,
+    }
   };
-  clickedCityPos: ClickCoordinates;
+  answerResult: boolean | undefined;
 }
-export interface ClickCoordinates {
+export interface MouseCoordinates {
   x?: number | null;
   y?: number | null;
 }
