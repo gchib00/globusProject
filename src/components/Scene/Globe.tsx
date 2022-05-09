@@ -6,14 +6,12 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import generateStars from './SceneObjectsGeneration/stars';
 import generateCities from './SceneObjectsGeneration/cities';
 import { useDispatch } from 'react-redux';
-import { setClickedCity } from '../../store/actions';
+import { setClickedCity, setLoading } from '../../store/actions';
 
-interface Props {
-  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
-}
-export const Globe = ({ setLoading }: Props) => {
+export const Globe = () => {
   const canvasRef = useRef() as MutableRefObject<HTMLCanvasElement>;
   const dispatch = useDispatch();
+
   useEffect(() => {
     //create scene:
     const scene = new THREE.Scene();
@@ -36,7 +34,10 @@ export const Globe = ({ setLoading }: Props) => {
     const mouse = new THREE.Vector2();
     const touch = new THREE.Vector2();
     //add objects to the scene:
-    generateGlobe({ scene, setLoading });
+    const updateLoadingStatus = (bool: boolean) => {
+      dispatch(setLoading(bool));
+    }
+    generateGlobe({ scene, updateLoadingStatus });
     generateClouds(scene);
     generateStars(scene);
     generateCities(scene);
@@ -47,15 +48,11 @@ export const Globe = ({ setLoading }: Props) => {
       mouse.y = - (e.clientY / window.innerHeight) * 2 + 1;
       raycaster.setFromCamera(mouse, camera);
       const globe = scene.getObjectByName('globe');
-      const clickCoordinates = {
-        x: e.clientX,
-        y: e.clientY
-      }
       if (globe) {
         const intersects = raycaster.intersectObjects(globe.children);
         //first child is clouds object, so we have to select second one in order to register city object clicks:
         if (intersects.length === 2) {
-          dispatch(setClickedCity(intersects[1].object.name, clickCoordinates));
+          dispatch(setClickedCity(intersects[1].object.name));
         }
       }
     }
@@ -114,7 +111,7 @@ export const Globe = ({ setLoading }: Props) => {
       }
     }
     animate();
-  }, [setLoading, dispatch]);
+  }, [dispatch]);
 
   return (
     <canvas ref={canvasRef} id='globe' />

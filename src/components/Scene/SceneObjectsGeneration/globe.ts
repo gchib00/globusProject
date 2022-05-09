@@ -3,16 +3,14 @@ import earth from '../../../static/earth.jpg';
 
 interface Props {
   scene: THREE.Scene;
-  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  updateLoadingStatus: (bool: boolean) => void;
 }
 
-const createGlobe = ({ scene, setLoading }: Props) => {
+const createGlobe = ({ scene, updateLoadingStatus }: Props) => {
 	const loadingManager = new THREE.LoadingManager();
   loadingManager.onLoad = () => {
     //remove loader screen:
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
+    updateLoadingStatus(false);
   }
   //load textures:
   const earthMainLayer = new THREE.TextureLoader(loadingManager).load(earth);

@@ -1,7 +1,6 @@
 const initialState = {
   targetCity: '',
-  clickedCity: '',
-  clickedCityPos: undefined
+  clickedCity: undefined,
 };
 
 interface ActionType {
@@ -21,10 +20,6 @@ export const cityReducer = (state = initialState, action: any) => {
       return {
         targetCity: state.targetCity,
         clickedCity: action.payload.city,
-        clickedCityPos: {
-          x: action.payload.pos.x,
-          y: action.payload.pos.y,
-        }
       }
     }
     default: return state;

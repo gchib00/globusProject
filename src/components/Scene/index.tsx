@@ -1,44 +1,42 @@
 import React, { useEffect } from 'react'
 import { Globe } from './Globe';
-import { setAnswer, setCity } from '../../store/actions';
+import { setAnswer, setCity, setClickedCity } from '../../store/actions';
 import citiesJSON from '../../static/cities.json';
 import { useSelector, useDispatch } from 'react-redux';
 import { FeedbackPopup } from '../HelperComponents/FeedbackPopup';
 import { State } from '../../types';
 
-interface Props {
-  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
-}
-export const Scene = ({ setLoading }: Props) => {
+export const Scene = () => {
   const city = useSelector((state: State) => state.city);
   const answerResult = useSelector((state: State) => state.answerResult);
   const dispatch = useDispatch();
   const getRandomCity = (): string => {
     const arr = [...citiesJSON];
-    const i = Math.floor(Math.random()*arr.length);
+    const i = Math.floor(Math.random() * arr.length);
     return arr[i].capitalName;
   }
   useEffect(() => {
-    if (city.targetCity.length === 0) {
-      dispatch(setCity(getRandomCity()))
-    }
-  }, [city.targetCity, dispatch]);
-  useEffect(() => {
-    if (city.targetCity.length > 0 && city.targetCity === city.clickedCity && !answerResult) {
-      dispatch(setAnswer(true))
-      //set a different random city:
-      let newRandomCity = getRandomCity();
-      //make sure the same city is not repeated in sequence:
-      if (newRandomCity === city.targetCity) {
-        newRandomCity = getRandomCity();
-      }
+    const { targetCity, clickedCity } = city;
+    if (targetCity.length === 0) {
+      //set a random city on app initialization:
       dispatch(setCity(getRandomCity()));
+    } else if (targetCity.length > 0 && clickedCity && clickedCity === targetCity) {
+      dispatch(setAnswer(true));
+    } else if (targetCity.length > 0 && clickedCity && clickedCity !== targetCity) {
+      dispatch(setAnswer(false));
     }
-  }, [city, dispatch, answerResult])
+  }, [dispatch, city]);
+  useEffect(() => {
+    // if user scores, reset the target city as well as the clicked city:
+    if (answerResult === true) {
+      dispatch(setCity(getRandomCity()));
+      dispatch(setClickedCity(undefined));
+    }
+  }, [dispatch, answerResult]);
   return (
     <>
-    <Globe setLoading={setLoading} />
-    <FeedbackPopup />    
+      <Globe />
+      <FeedbackPopup />    
     </>
   )
 }

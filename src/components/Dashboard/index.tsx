@@ -1,11 +1,28 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setCity } from '../../store/actions';
 import { State } from '../../types';
 import './Dashboard.css';
 import NavbarMenu from './NavbarMenu';
+import citiesJSON from '../../static/cities.json';
 
 export const Dashboard = () => {
   const city = useSelector((state: State) => state.city);
+  const dispatch = useDispatch();
+  const getRandomCity = (): string => {
+    const arr = [...citiesJSON];
+    const i = Math.floor(Math.random()*arr.length);
+    return arr[i].capitalName;
+  }
+  useEffect(() => {
+    // if (city.targetCity === '') {
+    //   console.log('current city=', city.targetCity)
+    //   dispatch(setCity(getRandomCity()));
+    // } 
+    dispatch(setCity(getRandomCity()));
+  }, [])
+
+
   return (
     <div className='dashboard-mc'>
       <div className='logo-placeholder'>

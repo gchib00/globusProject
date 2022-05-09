@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './App.css';
 import { LoadingScreen } from './components/LoadingScreen';
 import { Dashboard } from './components/Dashboard';
@@ -8,13 +8,12 @@ import { Provider } from 'react-redux';
 import { allReducers } from './store/reducers';
 
 function App() {
-  const [loading, setLoading] = useState<boolean>(true);
   const store = createStore(allReducers);
-
   return (
     <Provider store={store}>
-      { loading ? <LoadingScreen /> : <Dashboard /> }
-      <Scene setLoading={setLoading} />    
+      <LoadingScreen />
+      <Dashboard />
+      <Scene />    
     </Provider>
   );
 }

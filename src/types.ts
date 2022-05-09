@@ -2,12 +2,9 @@ export interface State {
   city: {
     targetCity: string;
     clickedCity?: string;
-    clickedCityPos?: {
-      x: number,
-      y: number,
-    }
   };
   answerResult: boolean | undefined;
+  loading: boolean;
 }
 export interface MouseCoordinates {
   x?: number | null;
