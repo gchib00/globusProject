@@ -7,8 +7,12 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+/* variables */
+:root {
+  --mainColor: #d5d0d1ef;
+  --backgroundColor: #d5d0d142;
 }

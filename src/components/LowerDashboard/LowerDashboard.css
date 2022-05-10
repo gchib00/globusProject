@@ -1,0 +1,19 @@
+.lowerdashboard-mc {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  bottom: 15px;
+  width: 100vw;
+  height: 40px;
+  background-color: transparent;
+}
+.feedback-popup {
+  position: absolute;
+  border-radius: 6px;
+  width: 130px;
+  height: 40px;
+  color: var(--mainColor);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

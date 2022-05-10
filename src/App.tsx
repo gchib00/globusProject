@@ -6,6 +6,7 @@ import { Scene } from './components/Scene';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { allReducers } from './store/reducers';
+import { LowerDashboard } from './components/LowerDashboard';
 
 function App() {
   const store = createStore(allReducers);
@@ -13,6 +14,7 @@ function App() {
     <Provider store={store}>
       <LoadingScreen />
       <Dashboard />
+      <LowerDashboard />
       <Scene />    
     </Provider>
   );

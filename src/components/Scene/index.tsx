@@ -3,7 +3,6 @@ import { Globe } from './Globe';
 import { setAnswer, setCity, setClickedCity } from '../../store/actions';
 import citiesJSON from '../../static/cities.json';
 import { useSelector, useDispatch } from 'react-redux';
-import { FeedbackPopup } from '../HelperComponents/FeedbackPopup';
 import { State } from '../../types';
 
 export const Scene = () => {
@@ -34,9 +33,6 @@ export const Scene = () => {
     }
   }, [dispatch, answerResult]);
   return (
-    <>
-      <Globe />
-      <FeedbackPopup />    
-    </>
+    <Globe />
   )
 }
