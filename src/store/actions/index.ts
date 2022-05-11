@@ -14,3 +14,11 @@ export const setLoading = (loading: boolean) => ({
   type: 'SET_LOADING_SCREEN',
   payload: loading
 });
+export const setUserEmail = (email: string) => ({
+  type: 'SET_USER_EMAIL',
+  payload: email
+});
+export const updateScore = (score: number) => ({
+  type: 'UPDATE_SCORE',
+  payload: score
+});
