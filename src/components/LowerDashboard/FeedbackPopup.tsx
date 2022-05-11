@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { setAnswer } from '../../store/actions';
 import { State } from '../../types';
-import './LowerDashboard.css';
 
 export const FeedbackPopup = () => {
   const [feedback, setFeedback] = useState<boolean | null>(null);

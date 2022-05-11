@@ -8,10 +8,21 @@
   background-color: transparent;
 }
 .feedback-popup {
-  position: absolute;
   border-radius: 6px;
   width: 130px;
   height: 40px;
+  color: var(--mainColor);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.scoreCounter {
+  position: absolute;
+  left: 15px;
+  min-width: 90px;
+  height: 40px;
+  border-radius: 6px;
+  background-color: var(--backgroundColor);
   color: var(--mainColor);
   display: flex;
   justify-content: center;
