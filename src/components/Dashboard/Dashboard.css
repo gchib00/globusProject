@@ -36,10 +36,10 @@
 	width: 2.2rem;
 	background-color: var(--mainColor);
 	border-radius: 5px;
-  transition: 0.3s;
+  transition: 300ms;
 }
 .m-list-container {
-  height: 0px;
+  max-height: 0px;
   width: 300px;
   background-color: var(--backgroundColor);
   border-top: none;
@@ -52,4 +52,23 @@
 }
 .m-list {
   transition: 200ms;
+  padding: 10px;
+}
+.m-item {
+  all: unset;
+  width: 88%;
+  height: 28px;
+  color: var(--mainColor);
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 200ms;
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+.m-item:hover {
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.166);
+  border-radius: 6px;
 }

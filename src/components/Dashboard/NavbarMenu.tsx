@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import './Dashboard.css'
+import { MenuItem } from './MenuItem';
 
 type Props = {}
 
@@ -14,43 +15,20 @@ const NavbarMenu = (props: Props) => {
   const handleClick = () => {
     if (!menu) {
       //transform menu button:
-      setMenuBar1POS({
-        transform: 'rotate(40deg) translateY(0.7rem)',
-      });
-      setMenuBar2POS({
-        opacity: 0,
-        transform: 'translateX(-20px)',
-      });
-      setMenuBar3POS({
-        transform: 'rotate(-40deg) translateY(-0.7rem)',
-      });
+      setMenuBar1POS({ transform: 'rotate(40deg) translateY(0.7rem)' });
+      setMenuBar2POS({ opacity: 0, transform: 'translateX(-20px)' });
+      setMenuBar3POS({ transform: 'rotate(-40deg) translateY(-0.7rem)' });
       //transform menu list:
-      setMenuLCVisibility({
-        height: '300px',
-        opacity: 1,
-      });
-      setMenuListVisibility({
-        opacity: 1,
-      });
+      setMenuLCVisibility({ maxHeight: '600px', opacity: 1 });
+      setMenuListVisibility({ opacity: 1 });
     } else {
       //transform button and return it to its original form:
-      setMenuBar1POS({
-        transform: 'rotate(0deg) translateY(0rem)',
-      });
-      setMenuBar2POS({
-        transform: 'translateX(0px)',
-      });
-      setMenuBar3POS({
-        transform: 'rotate(0deg) translateY(0rem)',
-      });
+      setMenuBar1POS({ transform: 'rotate(0deg) translateY(0rem)' });
+      setMenuBar2POS({ transform: 'translateX(0px)' });
+      setMenuBar3POS({ transform: 'rotate(0deg) translateY(0rem)' });
       //transform menu list and hide it:
-      setMenuLCVisibility({
-        height: '0px',
-        opacity: 0,
-      });
-      setMenuListVisibility({
-        opacity: 0,
-      });
+      setMenuLCVisibility({ maxHeight: '0px', opacity: 0 });
+      setMenuListVisibility({ opacity: 0 });
     }  
     setMenu(!menu)
   }
@@ -64,12 +42,13 @@ const NavbarMenu = (props: Props) => {
       </div>
       <div className='m-list-container' style={menuLCVisibility}>
         <ul className='m-list' style={menuListVisibility}>
-          <li>item 1</li>
-          <li>item 2</li>
+          <MenuItem title='Brightness' />
+          <MenuItem title='Color Settings' />
+          <MenuItem title='Contact' />
         </ul>
       </div>
     </div>
   )
 }
 
-export default NavbarMenu
+export default NavbarMenu;

@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { State } from '../../types';
 import { FeedbackPopup } from './FeedbackPopup';
 import './LowerDashboard.css';
-import { ScoreCounter } from './ScoreCounter';
+import { StreakCounter } from './StreakCounter';
 
 export const LowerDashboard = () => {
   const loading = useSelector((state: State) => state.loading);
@@ -12,7 +12,7 @@ export const LowerDashboard = () => {
   }
   return (
     <div className='lowerdashboard-mc'>
-      <ScoreCounter />
+      <StreakCounter />
       <FeedbackPopup />
     </div>
   )
