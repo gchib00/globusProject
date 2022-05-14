@@ -5,11 +5,13 @@ import generateClouds from './SceneObjectsGeneration/clouds';
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import generateStars from './SceneObjectsGeneration/stars';
 import generateCities from './SceneObjectsGeneration/cities';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setClickedCity, setLoading } from '../../store/actions';
+import { State } from '../../types';
 
 export const Globe = () => {
   const canvasRef = useRef() as MutableRefObject<HTMLCanvasElement>;
+  const { brightness, cityColor } = useSelector((state: State) => state.globeSettings);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -37,10 +39,10 @@ export const Globe = () => {
     const updateLoadingStatus = (bool: boolean) => {
       dispatch(setLoading(bool));
     }
-    generateGlobe({ scene, updateLoadingStatus });
+    generateGlobe({ scene, brightness, updateLoadingStatus });
     generateClouds(scene);
     generateStars(scene);
-    generateCities(scene);
+    generateCities({ scene, cityColor });
     //click event registering:
     const onWindowClick = (e: MouseEvent) => {
       e.preventDefault();

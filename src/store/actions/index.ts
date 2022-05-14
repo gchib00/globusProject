@@ -22,3 +22,7 @@ export const updateScore = (score: number) => ({
   type: 'UPDATE_SCORE',
   payload: score
 });
+export const changeGlobeBrightness = (brightnessLevel: number) => ({
+  type: 'CHANGE_GLOBE_BRIGHTNESS',
+  payload: brightnessLevel
+});

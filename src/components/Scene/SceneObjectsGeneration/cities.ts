@@ -1,23 +1,25 @@
 import * as THREE from "three";
 import citiesJSON from '../../../static/cities.json';
+import { City } from "../../../types";
 
-interface City {
-  countryName: string;
-  capitalName: string;
-  latitude: string;
-  longitude: string;
-  countryCode: string;
-  continent: string;
+interface Props {
+  scene: THREE.Scene;
+  cityColor: string;
 }
-
-const generateCities = (scene: THREE.Scene) => {
+const generateCities = ({ scene, cityColor }: Props) => {
   const cities: City[] = [...citiesJSON];
   cities.map((city) => {
     const latitude = Number(city.latitude) * (Math.PI/180);
     const longitude = - Number(city.longitude) * (Math.PI/180);
     const radius = 5; //must be equal to globe's radius
     //create texture:
-    const material = new THREE.MeshBasicMaterial({ color: '#750000' })
+    const determineCityColor = () => {
+      switch(cityColor){
+        case ('red'): return '#750000';
+        case ('white'): return '#FFFFFF'
+      }
+    }
+    const material = new THREE.MeshBasicMaterial({ color: determineCityColor() })
     //create city object:
     const geometry = new THREE.SphereGeometry(.010, 15, 15);
     const cityObject = new THREE.Mesh(geometry, material);  

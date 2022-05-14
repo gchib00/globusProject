@@ -15,12 +15,10 @@ export const Dashboard = () => {
     return arr[i].capitalName;
   }
   useEffect(() => {
-    // if (city.targetCity === '') {
-    //   console.log('current city=', city.targetCity)
-    //   dispatch(setCity(getRandomCity()));
-    // } 
-    dispatch(setCity(getRandomCity()));
-  }, [])
+    if (city.targetCity === '') {
+      dispatch(setCity(getRandomCity()));
+    } 
+  }, [dispatch, city])
 
 
   return (
