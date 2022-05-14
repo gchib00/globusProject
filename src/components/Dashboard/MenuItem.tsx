@@ -6,22 +6,31 @@ interface Props {
 }
 
 export const MenuItem = ({ title }: Props) => {
-  const [itemSettings, setItemSettings] = useState<boolean>(false);
-  const handleClick = () => {
-    switch (title) {
-      case ('Brightness'): {
-        if (!itemSettings) {
-          setItemSettings(true);
-        } else {
-          setItemSettings(false);
-        }
-      }
-    }
-  }
+  const [itemSettings, setItemSettings] = useState<boolean>(true);
+  // const handleClick = () => {
+  //   switch (title) {
+  //     case ('Brightness'): {
+  //       if (!itemSettings) {
+  //         setItemSettings(true);
+  //       } else {
+  //         setItemSettings(false);
+  //       }
+  //       break;
+  //     }
+  //     case ('Color Settings'): {
+  //       if (!itemSettings) {
+  //         setItemSettings(true);
+  //       } else {
+  //         setItemSettings(false);
+  //       }
+  //       break;
+  //     }
+  //   }
+  // }
   return (
     <div
       className='m-item'
-      onClick={() => handleClick()}
+      // onClick={() => handleClick()}
       style={ itemSettings ? {backgroundColor: 'rgba(255, 255, 255, 0.166)', fontWeight: 600} : {fontWeight: 500} }
     >
       <span className='m-item-name'>{ title }</span>

@@ -12,11 +12,13 @@ interface ActionType {
 
 export const globeReducer = (state = initialState, action: ActionType) => {
   switch (action.type) {
-    case('CHANGE_GLOBE_BRIGHTNESS'): {
-      return {
-        ...state,
-        brightness: action.payload
-      }
+    case('CHANGE_GLOBE_BRIGHTNESS'): return {
+      ...state,
+      brightness: action.payload
+    }
+    case('CHANGE_CITIES_COLOR'): return {
+      ...state,
+      cityColor: action.payload
     }
     default: return state;
   }

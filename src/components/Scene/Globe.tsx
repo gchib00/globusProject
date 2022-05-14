@@ -13,7 +13,6 @@ export const Globe = () => {
   const canvasRef = useRef() as MutableRefObject<HTMLCanvasElement>;
   const { brightness, cityColor } = useSelector((state: State) => state.globeSettings);
   const dispatch = useDispatch();
-
   useEffect(() => {
     //create scene:
     const scene = new THREE.Scene();
@@ -113,7 +112,7 @@ export const Globe = () => {
       }
     }
     animate();
-  }, [dispatch]);
+  }, [dispatch, cityColor, brightness]);
 
   return (
     <canvas ref={canvasRef} id='globe' />

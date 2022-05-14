@@ -2,15 +2,13 @@ import React, { useState } from 'react'
 import './Dashboard.css'
 import { MenuItem } from './MenuItem';
 
-type Props = {}
-
-const NavbarMenu = (props: Props) => {
+const NavbarMenu = () => {
   const [menu, setMenu] = useState<boolean>(false);
   const [menuBar1POS, setMenuBar1POS] = useState<React.CSSProperties>({});
   const [menuBar2POS, setMenuBar2POS] = useState<React.CSSProperties>({});
   const [menuBar3POS, setMenuBar3POS] = useState<React.CSSProperties>({});
   const [menuLCVisibility, setMenuLCVisibility] = useState<React.CSSProperties>({ opacity: 0 });
-  const [menuListVisibility, setMenuListVisibility] = useState<React.CSSProperties>({ opacity: 0 });
+  const [menuListVisibility, setMenuListVisibility] = useState<React.CSSProperties>({ display: 'none' });
 
   const handleClick = () => {
     if (!menu) {
@@ -20,7 +18,7 @@ const NavbarMenu = (props: Props) => {
       setMenuBar3POS({ transform: 'rotate(-40deg) translateY(-0.7rem)' });
       //transform menu list:
       setMenuLCVisibility({ maxHeight: '600px', opacity: 1 });
-      setMenuListVisibility({ opacity: 1 });
+      setMenuListVisibility({ display: 'block' });
     } else {
       //transform button and return it to its original form:
       setMenuBar1POS({ transform: 'rotate(0deg) translateY(0rem)' });
@@ -28,7 +26,7 @@ const NavbarMenu = (props: Props) => {
       setMenuBar3POS({ transform: 'rotate(0deg) translateY(0rem)' });
       //transform menu list and hide it:
       setMenuLCVisibility({ maxHeight: '0px', opacity: 0 });
-      setMenuListVisibility({ opacity: 0 });
+      setMenuListVisibility({ display: 'none' });
     }  
     setMenu(!menu)
   }

@@ -16,7 +16,8 @@ const generateCities = ({ scene, cityColor }: Props) => {
     const determineCityColor = () => {
       switch(cityColor){
         case ('red'): return '#750000';
-        case ('white'): return '#FFFFFF'
+        case ('purple'): return '#6723fa';
+        case ('white'): return '#ffffff';
       }
     }
     const material = new THREE.MeshBasicMaterial({ color: determineCityColor() })
