@@ -47,11 +47,10 @@
   position: absolute;
   right: 0;
   top: 46px;
-  transition: 500ms;
+  transition: 300ms;
   z-index: 5;
 }
 .m-list {
-  transition: 200ms;
   padding: 10px;
 }
 .m-item {
@@ -64,7 +63,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  transition: 200ms;
   font-weight: 500;
   margin-bottom: 6px;
 }

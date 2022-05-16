@@ -1,3 +1,7 @@
+:root {
+  --mainColor: #d5d0d1ef;
+  --backgroundColor: #d5d0d142;
+}
 body {
   margin: 0;
   overflow: hidden;
@@ -10,9 +14,4 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-}
-/* variables */
-:root {
-  --mainColor: #d5d0d1ef;
-  --backgroundColor: #d5d0d142;
 }
