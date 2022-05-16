@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { ItemSettings } from './ItemSettings';
 
 interface Props {
@@ -6,35 +6,10 @@ interface Props {
 }
 
 export const MenuItem = ({ title }: Props) => {
-  const [itemSettings, setItemSettings] = useState<boolean>(true);
-  // const handleClick = () => {
-  //   switch (title) {
-  //     case ('Brightness'): {
-  //       if (!itemSettings) {
-  //         setItemSettings(true);
-  //       } else {
-  //         setItemSettings(false);
-  //       }
-  //       break;
-  //     }
-  //     case ('Color Settings'): {
-  //       if (!itemSettings) {
-  //         setItemSettings(true);
-  //       } else {
-  //         setItemSettings(false);
-  //       }
-  //       break;
-  //     }
-  //   }
-  // }
   return (
-    <div
-      className='m-item'
-      // onClick={() => handleClick()}
-      style={ itemSettings ? {backgroundColor: 'rgba(255, 255, 255, 0.166)', fontWeight: 600} : {fontWeight: 500} }
-    >
+    <div className='m-item'>
       <span className='m-item-name'>{ title }</span>
-      { itemSettings ? <ItemSettings type={ title } /> : null }
+      <ItemSettings type={ title } />
     </div>
   )
 }
