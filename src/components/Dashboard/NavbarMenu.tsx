@@ -42,7 +42,6 @@ const NavbarMenu = () => {
         <ul className='m-list' style={menuListVisibility}>
           <MenuItem title='Brightness' />
           <MenuItem title='Color Settings' />
-          <MenuItem title='Contact' />
         </ul>
       </div>
     </div>
