@@ -9,15 +9,15 @@ export const ColorSettings = () => {
   return (
     <div className='m-radio-btns-contaner'>
       <label className='m-radio-btn' onClick={() => dispatch(changeCitiesColor('red'))}>
-        <input type='radio' checked={cityColor === 'red' ? true : false} />
+        <input type='radio' checked={cityColor === 'red' ? true : false} readOnly />
         <span>Red</span>
       </label>
       <label className='m-radio-btn' onClick={() => dispatch(changeCitiesColor('purple'))}>
-        <input type='radio' checked={cityColor === 'purple' ? true : false} />
+        <input type='radio' checked={cityColor === 'purple' ? true : false} readOnly />
         <span>Purple</span>
       </label>
       <label className='m-radio-btn' onClick={() => dispatch(changeCitiesColor('white'))}>
-        <input type='radio' checked={cityColor === 'white' ? true : false} />
+        <input type='radio' checked={cityColor === 'white' ? true : false} readOnly />
         <span>White</span>
       </label>
     </div>
