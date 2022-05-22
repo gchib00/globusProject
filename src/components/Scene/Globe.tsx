@@ -5,17 +5,24 @@ import generateClouds from './SceneObjectsGeneration/clouds'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import generateStars from './SceneObjectsGeneration/stars'
 import generateCities from './SceneObjectsGeneration/cities'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { setClickedCity, setLoading } from '../../store/actions'
-import { State } from '../../types'
 
 export const Globe = () => {
   const canvasRef = useRef() as MutableRefObject<HTMLCanvasElement>
-  const { brightness, cityColor } = useSelector((state: State) => state.globeSettings)
   const dispatch = useDispatch()
-  useEffect(() => {
+  const scene = new THREE.Scene()
+  //add objects to the scene:
+  const updateLoadingStatus = (bool: boolean) => {
+    dispatch(setLoading(bool))
+  }
+  generateGlobe({ scene, updateLoadingStatus })
+  generateClouds(scene)
+  generateStars(scene)
+  generateCities(scene)  
+
+  const animateGlobe = () => {
     //create scene:
-    const scene = new THREE.Scene()
     const camera = new THREE.PerspectiveCamera(
       70,
       window.innerWidth / window.innerHeight,
@@ -39,14 +46,6 @@ export const Globe = () => {
     const raycaster = new THREE.Raycaster()
     const mouse = new THREE.Vector2()
     const touch = new THREE.Vector2()
-    //add objects to the scene:
-    const updateLoadingStatus = (bool: boolean) => {
-      dispatch(setLoading(bool))
-    }
-    generateGlobe({ scene, brightness, updateLoadingStatus })
-    generateClouds(scene)
-    generateStars(scene)
-    generateCities({ scene, cityColor })
     //click event registering:
     const onWindowClick = (e: MouseEvent) => {
       e.preventDefault()
@@ -54,6 +53,7 @@ export const Globe = () => {
       mouse.y = -(e.clientY / window.innerHeight) * 2 + 1
       raycaster.setFromCamera(mouse, camera)
       const globe = scene.getObjectByName('globe')
+      console.log(scene)
       if (globe) {
         const intersects = raycaster.intersectObjects(globe.children)
         //first child is clouds object, so we have to select second one in order to register city object clicks:
@@ -117,8 +117,12 @@ export const Globe = () => {
         cloudsLayer.rotation.y += 0.0001
       }
     }
-    animate()
-  }, [dispatch, cityColor, brightness])
+    animate()    
+  }
+
+  useEffect(() => {
+    animateGlobe()
+  }, [dispatch])
 
   return <canvas ref={canvasRef} id='globe' />
 }

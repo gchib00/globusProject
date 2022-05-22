@@ -12,13 +12,13 @@ export const cityReducer = (state = initialState, action: ActionType) => {
   switch (action.type) {
     case 'SET_CITY': {
       return {
+        ...state,
         targetCity: action.payload,
-        clickedCity: state.clickedCity,
       }
     }
     case 'SET_CLICKED_CITY': {
       return {
-        targetCity: state.targetCity,
+        ...state,
         clickedCity: action.payload,
       }
     }

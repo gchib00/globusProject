@@ -16,10 +16,13 @@ export const Scene = () => {
   }
   useEffect(() => {
     const { targetCity, clickedCity } = city
+    // console.log('targetCity=', targetCity);
+    // console.log('clickedCity=', clickedCity);
+    // console.log('-----');
     if (targetCity.length === 0) {
       //set a random city on app initialization:
       dispatch(setCity(getRandomCity()))
-    } else if (targetCity.length > 0 && clickedCity && clickedCity === targetCity) {
+    } else if (targetCity.length > 0 && clickedCity === targetCity) {
       dispatch(setAnswer(true))
     } else if (targetCity.length > 0 && clickedCity && clickedCity !== targetCity) {
       dispatch(setAnswer(false))

@@ -16,8 +16,6 @@ export const FeedbackPopup = () => {
     }
   }
   useEffect(() => {
-    console.log('clickedCity=', clickedCity)
-    console.log('answer=', answerResult)
     if (clickedCity && answerResult === true) {
       setFeedback(true)
     } else if (clickedCity && answerResult === false) {

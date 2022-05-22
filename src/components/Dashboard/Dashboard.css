@@ -72,48 +72,4 @@
 .m-item-name {
   padding: 6px;
 }
-/* radio buttons */
-.m-radio-btns-contaner {
-  background-color: rgba(255, 255, 255, 0.166);
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-.m-radio-btn > input[type='radio'] {
-  display: none;
-}
-.m-radio-btn > input[type='radio']:checked + span:before {
-  box-shadow: inset 0 0 0 5px #00005c;
-}
-.m-radio-btn {
-  cursor: pointer;
-  font-weight: 400;
-  margin-bottom: 4px;
-  width: 100%;
-}
-.m-radio-btn span {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 6px 12px 6px 8px;
-  border-radius: 6px;
-  transition: 0.25s ease;
-}
-.m-radio-btn span:hover,
-input[type='radio']:checked + span {
-  background-color: #d6d6e5;
-  color: black;
-}
-.m-radio-btn span:before {
-  content: '';
-  background-color: #fff;
-  width: 1rem;
-  height: 1rem;
-  border-radius: 50%;
-  margin-right: 0.4rem;
-  transition: 0.25s ease;
-  box-shadow: inset 0 0 0 2px #00005c;
-}
+
