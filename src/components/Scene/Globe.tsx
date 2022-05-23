@@ -53,7 +53,6 @@ export const Globe = () => {
       mouse.y = -(e.clientY / window.innerHeight) * 2 + 1
       raycaster.setFromCamera(mouse, camera)
       const globe = scene.getObjectByName('globe')
-      console.log(scene)
       if (globe) {
         const intersects = raycaster.intersectObjects(globe.children)
         //first child is clouds object, so we have to select second one in order to register city object clicks:
@@ -72,7 +71,7 @@ export const Globe = () => {
         const intersects = raycaster.intersectObjects(globe.children)
         if (intersects.length === 2) {
           //first child is clouds object, so we have to select second one
-          console.log(intersects[1].object.name)
+          dispatch(setClickedCity(intersects[1].object.name))
         }
       }
     }

@@ -7,6 +7,7 @@ export interface State {
   loading: boolean
   user: User
   globeSettings: GlobeSettings
+  modal: boolean
 }
 export interface MouseCoordinates {
   x?: number | null

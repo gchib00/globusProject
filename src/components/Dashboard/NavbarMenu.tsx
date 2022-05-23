@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import './Dashboard.css'
 import { MenuItem } from './MenuItem'
+import Modal from './Modal'
 
 const NavbarMenu = () => {
   const [menu, setMenu] = useState<boolean>(false)
@@ -42,10 +43,11 @@ const NavbarMenu = () => {
       </div>
       <div className='m-list-container' style={menuLCVisibility}>
         <ul className='m-list' style={menuListVisibility}>
-          <MenuItem title='Brightness' />
-          <MenuItem title='Color Settings' />
+          <MenuItem title='How to Play' />
+          <MenuItem title='View Github Repo' />
         </ul>
       </div>
+      <Modal />
     </div>
   )
 }

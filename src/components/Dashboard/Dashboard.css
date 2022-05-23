@@ -72,4 +72,13 @@
 .m-item-name {
   padding: 6px;
 }
-
+/* modal */
+.screenDimmer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.488);
+  z-index: 5;
+}
