@@ -23,7 +23,7 @@ export const Dashboard = () => {
   return (
     <div className='dashboard-mc'>
       <div className='logo-placeholder'>
-        <h3 style={{ color: 'white' }}>LOGO</h3>
+        <h3 style={{ color: 'white' }}>GlobusPJ</h3>
       </div>
       <div className='dashboard-trapezoid'>{city.targetCity}</div>
       <NavbarMenu />

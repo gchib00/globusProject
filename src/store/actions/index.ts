@@ -22,7 +22,3 @@ export const updateScore = (score: number) => ({
   type: 'UPDATE_SCORE',
   payload: score,
 })
-export const switchModal = (bool: boolean) => ({
-  type: 'SWITCH_MODAL',
-  payload: bool
-})

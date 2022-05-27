@@ -2,7 +2,6 @@ import { combineReducers } from 'redux'
 import { answerReducer } from './answerReducer'
 import { cityReducer } from './cityReducer'
 import { loadingScreenReducer } from './loadingScreenReducer'
-import { modalReducer } from './modalReducer'
 import { userReducer } from './userReducer'
 
 export const allReducers = combineReducers({
@@ -10,5 +9,4 @@ export const allReducers = combineReducers({
   answerResult: answerReducer,
   loading: loadingScreenReducer,
   user: userReducer,
-  modal: modalReducer,
 })

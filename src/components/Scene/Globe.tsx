@@ -19,7 +19,7 @@ export const Globe = () => {
   generateGlobe({ scene, updateLoadingStatus })
   generateClouds(scene)
   generateStars(scene)
-  generateCities(scene)  
+  generateCities(scene)
 
   const animateGlobe = () => {
     //create scene:
@@ -116,7 +116,7 @@ export const Globe = () => {
         cloudsLayer.rotation.y += 0.0001
       }
     }
-    animate()    
+    animate()
   }
 
   useEffect(() => {

@@ -72,23 +72,13 @@
 .m-item-name {
   padding: 6px;
 }
-/* modal */
-.screenDimmer {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 100vw;
-  background-color: rgba(0, 0, 0, 0.488);
-  z-index: 5;
-}
 /* mobile */
 @media (max-width: 400px) {
   .dashboard-trapezoid {
-    width: 220px;
+    width: 210px;
   }
   .m-btn {
-    margin-right: 1rem;
+    margin-right: 1.8rem;
   }
   .m-list-container {
     width: 100%;
@@ -96,5 +86,10 @@
   }
   .m-item {
     width: 98%;
+  }
+}
+@media (max-width: 330px) {
+  .m-btn {
+    margin-right: 1rem;
   }
 }
