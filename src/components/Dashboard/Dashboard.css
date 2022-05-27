@@ -82,3 +82,19 @@
   background-color: rgba(0, 0, 0, 0.488);
   z-index: 5;
 }
+/* mobile */
+@media (max-width: 400px) {
+  .dashboard-trapezoid {
+    width: 220px;
+  }
+  .m-btn {
+    margin-right: 1rem;
+  }
+  .m-list-container {
+    width: 100%;
+    margin: 0;
+  }
+  .m-item {
+    width: 98%;
+  }
+}
